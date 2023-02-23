@@ -42,3 +42,12 @@ Running `target/debug/src`
 
 ```
 
+* Sample run
+  ```
+  // http://localhost:8000/remove-dups?q=leetleetleetcode%20is%20not%20fun
+  
+  {
+    "result": "leetcode is not fun "
+  }
+  ```
+
