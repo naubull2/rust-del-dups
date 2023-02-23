@@ -1,0 +1,19 @@
+[package]
+name = "deldups"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0.136", features = ["derive"] }
+rocket = { version = "0.5.0-rc.2", features = ["json"] }
+
+[[bin]]
+name = "src"
+path = "src/main.rs"
+
+[[routes]]
+uri = "/remove_dups?<q>"
+method = "get"
+handler = "remove_dups_handler"
