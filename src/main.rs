@@ -1,25 +1,9 @@
 #[macro_use]
 extern crate rocket;
 
-use rocket::request::FromParam;
 use rocket::serde::json::Json;
 use serde::{Serialize, Deserialize};
 
-
-#[derive(Debug)]
-struct Query(String);
-
-impl<'r> FromParam<'r> for Query {
-    type Error = &'r str;
-
-    fn from_param(param: &'r str) -> Result<Self, Self::Error> {
-        if !param.is_empty() {
-            Ok(Query(param.to_string()))
-        } else {
-            Err("Query cannot be empty.")
-        }
-    }
-}
 
 fn remove_ngram_dups(s: &str, n: usize, term: Option<usize>) -> String {
     let max_dups = if n < 3 { 3 } else { 1 };
