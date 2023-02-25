@@ -32,7 +32,7 @@ fn remove_ngram_dups(s: &str, n: usize, term: Option<usize>) -> String {
 
     if s != result {
         // backtrack to n/2 gram if pattern is found
-        let new_n = n / 2;
+        let new_n = n / 2 + 1;
         let new_term = Some(term);
         remove_ngram_dups(&result.iter().collect::<String>(), new_n, new_term)
     } else {
@@ -43,12 +43,7 @@ fn remove_ngram_dups(s: &str, n: usize, term: Option<usize>) -> String {
 }
 
 fn remove_dups(s: &str) -> String {
-    let s1 = remove_ngram_dups(&format!(" {}", s), 1, None);
-    let s2 = remove_ngram_dups(&format!("{} ", s), 1, None);
-    if s1.len() < s2.len() {
-        return s1;
-    }
-    s2
+    return remove_ngram_dups(&format!(" {} ", s), 1, None);
 }
 
 #[derive(Serialize, Deserialize)]
